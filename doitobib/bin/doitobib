@@ -1,0 +1,58 @@
+#!/usr/bib/env python
+from __future__ import print_function
+import argparse
+import textwrap
+from doitobib.crossref import get_bib_from_doi
+
+
+def save_output_bibs(bibs, output_file):
+    with open(output_file, 'w') as bibfile:
+        for bib in bibs:
+            bibfile.write("{}\n".format(bib))
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        prog="doitobib",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        description=textwrap.dedent('''\
+        Convert a list of dois in a bibfile.
+        -----------------------------------------------------
+            @author: Bruno Messias
+            @email: messias.physics@gmail.com
+            @telegram: @bruno_messias
+            @github: https://github.com/devmessias/titletobib
+        ''')
+    )
+
+    parser.add_argument(
+        "--inputfile", "-i",
+        type=argparse.FileType("r"),
+        help="input file"
+    )
+    parser.add_argument(
+        "--output", "-o",
+        help="bibtex output file")
+
+    args = parser.parse_known_args()
+    inlinedoi = len(args[1]) > 0
+    if inlinedoi:
+        dois = [" ".join(args[1])]
+    else:
+        dois = args[0].inputfile.read()
+        dois = filter(lambda title: title != "", dois.split("\n"))
+    bibs = []
+    for doi in dois:
+        found, bib = get_bib_from_doi(doi)
+        if found:
+            bibs.append(bib)
+
+    if len(bibs) > 0:
+        if inlinedoi:
+            print("\n\n"+bibs[0])
+        else:
+            save_output_bibs(bibs, args[0].output)
+
+
+if __name__ == "__main__":
+    main()
