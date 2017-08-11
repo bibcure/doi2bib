@@ -1,4 +1,5 @@
 #!/usr/bib/env python
+from __future__ import unicode_literals
 from __future__ import print_function
 import argparse
 import textwrap
@@ -49,7 +50,8 @@ def main():
 
     if len(bibs) > 0:
         if inlinedoi:
-            print("\n\n"+bibs[0])
+            print("\n\n")
+            print(bibs[0])
         else:
             save_output_bibs(bibs, args[0].output)
 
