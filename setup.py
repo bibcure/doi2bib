@@ -13,10 +13,10 @@ setup(
     install_requires=["requests", "future"],
     include_package_data=True,
     license="GPLv3",
-    description="Generate a bibtex given a title",
+    description="Generate a bibtex given a doi",
     author="Bruno Messias",
     author_email="messias.physics@gmail.com",
-    download_url="https://github.com/devmessias/doitobib/archive/0.1.tar.gz",
+    download_url="https://github.com/bibcure/doitobib/archive/0.1.tar.gz",
     keywords=["bibtex", "science","scientific-journals"],
 
     classifiers=[
@@ -26,5 +26,5 @@ setup(
         "Programming Language :: Python",
         "Topic :: Text Processing :: Markup :: LaTeX",
     ],
-    url="https://github.com/devmessias/doitobib"
+    url="https://github.com/bibcure/doitobib"
 )
