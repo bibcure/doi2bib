@@ -6,7 +6,7 @@ readme.close()
 
 setup(
     name="doitobib",
-    version="0.1",
+    version="0.2",
     packages = find_packages(exclude=["build",]),
     scripts=["doitobib/bin/doitobib"],
     long_description = README_TEXT,
@@ -16,7 +16,7 @@ setup(
     description="Generate a bibtex given a doi",
     author="Bruno Messias",
     author_email="messias.physics@gmail.com",
-    download_url="https://github.com/bibcure/doitobib/archive/0.1.tar.gz",
+    download_url="https://github.com/bibcure/doitobib/archive/0.2.tar.gz",
     keywords=["bibtex", "science","scientific-journals"],
 
     classifiers=[
