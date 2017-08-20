@@ -17,12 +17,14 @@ def main():
         prog="doitobib",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         description=textwrap.dedent('''\
-        Convert a list of dois in a bibfile.
+        Convert a list of DOIs in a bibfile.
+        You also can convert a simple DOI, like:
+        $ doitobib  10.1063/1.3149495
         -----------------------------------------------------
             @author: Bruno Messias
             @email: messias.physics@gmail.com
-            @telegram: @bruno_messias
-            @github: https://github.com/devmessias/titletobib
+            @telegram: @brunomessias
+            @github: https://github.com/bibcure/doitobib
         ''')
     )
 
