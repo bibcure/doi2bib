@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from __future__ import print_function
 import argparse
 import textwrap
-from doitobib.crossref import get_bib_from_doi
+from doi2bib.crossref import get_bib_from_doi
 
 
 def save_output_bibs(bibs, output_file):
@@ -14,17 +14,17 @@ def save_output_bibs(bibs, output_file):
 
 def main():
     parser = argparse.ArgumentParser(
-        prog="doitobib",
+        prog="doi2bib",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         description=textwrap.dedent('''\
         Convert a list of DOIs in a bibfile.
         You also can convert a simple DOI, like:
-        $ doitobib  10.1063/1.3149495
+        $ doi2bib  10.1063/1.3149495
         -----------------------------------------------------
             @author: Bruno Messias
             @email: messias.physics@gmail.com
             @telegram: @brunomessias
-            @github: https://github.com/bibcure/doitobib
+            @github: https://github.com/bibcure/doi2bib
         ''')
     )
 

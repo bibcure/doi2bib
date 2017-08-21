@@ -5,18 +5,18 @@ README_TEXT = readme.read()
 readme.close()
 
 setup(
-    name="doitobib",
-    version="0.2.1",
+    name="doi2bib",
+    version="0.2.2",
     packages = find_packages(exclude=["build",]),
-    scripts=["doitobib/bin/doitobib"],
+    scripts=["doi2bib/bin/doi2bib"],
     long_description = README_TEXT,
-    install_requires=["requests", "future"],
+    install_requires=["requests", "future", "bibtexparser"],
     include_package_data=True,
     license="GPLv3",
     description="Generate a bibtex given a doi",
     author="Bruno Messias",
     author_email="messias.physics@gmail.com",
-    download_url="https://github.com/bibcure/doitobib/archive/0.2.1.tar.gz",
+    download_url="https://github.com/bibcure/doi2bib/archive/0.2.2.tar.gz",
     keywords=["bibtex", "science","scientific-journals"],
 
     classifiers=[
@@ -26,5 +26,5 @@ setup(
         "Programming Language :: Python",
         "Topic :: Text Processing :: Markup :: LaTeX",
     ],
-    url="https://github.com/bibcure/doitobib"
+    url="https://github.com/bibcure/doi2bib"
 )

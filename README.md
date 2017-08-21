@@ -1,9 +1,9 @@
 ## Description
-doitobib is a module of [bibcure](https://github.com/bibcure/bibcure)
+doi2bib is a module of [bibcure](https://github.com/bibcure/bibcure)
 ## Install
 
 ```
-$ sudo pip install doitobib
+$ sudo pip install doi2bib
 ```
 or if you want the full version
 
@@ -25,14 +25,14 @@ DOI field(requires
 internet connection)
 * abbreviate jorunals names
 ```
-$ doitobib 10.1038/s41524-017-0032-0
+$ doi2bib 10.1038/s41524-017-0032-0
 ```
 Given a DOI number...
 * get bib item given a doi(requires
 internet connection)
 
 ```
-$ titletobib An useful paper
+$ title2bib An useful paper
 ```
 Given a title...
 * search papers related and return a bib for the selected paper(requires
