@@ -6,7 +6,7 @@ readme.close()
 
 setup(
     name="doi2bib",
-    version="0.2.2",
+    version="0.2.3",
     packages = find_packages(exclude=["build",]),
     scripts=["doi2bib/bin/doi2bib"],
     long_description = README_TEXT,
@@ -16,7 +16,7 @@ setup(
     description="Generate a bibtex given a doi",
     author="Bruno Messias",
     author_email="messias.physics@gmail.com",
-    download_url="https://github.com/bibcure/doi2bib/archive/0.2.2.tar.gz",
+    download_url="https://github.com/bibcure/doi2bib/archive/0.2.3.tar.gz",
     keywords=["bibtex", "science","scientific-journals"],
 
     classifiers=[
