@@ -1,6 +1,5 @@
 #!/usr/bib/env python
-from __future__ import unicode_literals
-from __future__ import print_function
+from __future__ import unicode_literals, print_function, absolute_import
 import argparse
 import textwrap
 from doi2bib.crossref import get_bib_from_doi
