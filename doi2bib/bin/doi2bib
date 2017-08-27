@@ -3,12 +3,17 @@ from __future__ import unicode_literals, print_function, absolute_import
 import argparse
 import textwrap
 from doi2bib.crossref import get_bib_from_doi
-
+import io
 
 def save_output_bibs(bibs, output_file):
-    with open(output_file, 'w') as bibfile:
-        for bib in bibs:
-            bibfile.write("{}\n".format(bib))
+    try:
+        with io.open(output_file, 'w', encoding="utf-8") as bibfile:
+            for bib in bibs:
+                bibfile.write("{}\n".format(bib))
+
+    except TypeError:
+        print("Can't save in output file\n")
+        print(bibs)
 
 
 def main():
@@ -28,7 +33,7 @@ def main():
     )
 
     parser.add_argument(
-        "--inputfile", "-i",
+        "--input", "-i",
         type=argparse.FileType("r"),
         help="input file"
     )
@@ -41,7 +46,7 @@ def main():
     if inlinedoi:
         dois = [" ".join(args[1])]
     else:
-        dois = args[0].inputfile.read()
+        dois = args[0].input.read()
         dois = filter(lambda title: title != "", dois.split("\n"))
     bibs = []
     for doi in dois:
