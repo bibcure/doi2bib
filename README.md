@@ -1,5 +1,6 @@
 # Description
 doi2bib is a module of [bibcure](https://github.com/bibcure/bibcure)and [scihub2pdf](https://github.com/bibcure/scihub2pdf)
+![](https://raw.githubusercontent.com/bibcure/logo/master/gifs/doi2bib.gif) 
 
 # Install
 
