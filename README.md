@@ -4,12 +4,12 @@ doi2bib is a module of [bibcure](https://github.com/bibcure/bibcure)and [scihub2
 # Install
 
 ```
-$ sudo python /usr/bin/pip install scihub2pdf
+$ sudo python /usr/bin/pip install doi2bib
 ```
 or if you want the full version
 
 ```
-$ sudo python /usr/bin/pip install scihub2pdf
+$ sudo python /usr/bin/pip install bibcure
 ```
 # Features and how to use
 
