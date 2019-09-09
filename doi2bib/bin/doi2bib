@@ -5,6 +5,7 @@ import textwrap
 from doi2bib.crossref import get_bib_from_doi
 import io
 
+
 def save_output_bibs(bibs, output_file):
     try:
         with io.open(output_file, 'w', encoding="utf-8") as bibfile:

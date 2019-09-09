@@ -7,29 +7,63 @@ bare_url = "http://api.crossref.org/"
 
 
 def get_bib(doi):
+    """
+    Parameters
+    ----------
+        doi: str
+    Returns
+    -------
+        found: bool
+        bib: str
+    """
     url = "{}works/{}/transform/application/x-bibtex"
     url = url.format(bare_url, doi)
     r = requests.get(url)
     found = False if r.status_code != 200 else True
     bib = r.content
-    return found, str(bib, "utf-8")
+    bib = str(bib, "utf-8")
+
+    return found, bib 
 
 
 def get_json(doi):
+    """
+    Parameters
+    ----------
+        doi: str
+    Returns
+    -------
+        found: bool
+        item: dict
+            Response from crossref
+    """
+
     url = "{}works/{}"
     url = url.format(bare_url, doi)
     r = requests.get(url)
     found = False if r.status_code != 200 else True
     item = r.json()
+
     return found, item
 
 
-def get_bib_from_doi(doi, abbrev_journal=False):
-
+def get_bib_from_doi(doi, abbrev_journal=True):
+    """
+    Parameters
+    ----------
+        doi: str
+        abbrev_journal: bool
+            If True try to abbreviate the journal name
+    Returns
+    -------
+        found: bool
+        bib: str
+            The bibtex string
+    """
     found, bib = get_bib(doi)
     if found and abbrev_journal:
 
-        found, item = get_json(doi)#json vindo errado
+        found, item = get_json(doi)
         if found:
             abbreviated_journal = item["message"]["short-container-title"][0].strip()
             if abbreviated_journal:
@@ -37,8 +71,5 @@ def get_bib_from_doi(doi, abbrev_journal=False):
                     r"journal = \{[^>]*?\}",
                     "journal = {" + abbreviated_journal + "}",
                     bib)
-        #pegar journal contraido e contrair autores
-        # depois fazer um replace no bib com  o nome do journal e o
-        #contraido, ou usar o bibtexparser(ultima melhor)
 
     return found, bib
