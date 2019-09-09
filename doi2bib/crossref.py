@@ -1,6 +1,7 @@
 from __future__ import unicode_literals, print_function, absolute_import
 from builtins import str
 import requests
+import re
 
 bare_url = "http://api.crossref.org/"
 
@@ -30,7 +31,12 @@ def get_bib_from_doi(doi, abbrev_journal=False):
 
         found, item = get_json(doi)#json vindo errado
         if found:
-            abbreviated_journal = item["message"]["short-container-title"][0]
+            abbreviated_journal = item["message"]["short-container-title"][0].strip()
+            if abbreviated_journal:
+                bib = re.sub(
+                    r"journal = \{[^>]*?\}",
+                    "journal = {" + abbreviated_journal + "}",
+                    bib)
         #pegar journal contraido e contrair autores
         # depois fazer um replace no bib com  o nome do journal e o
         #contraido, ou usar o bibtexparser(ultima melhor)
