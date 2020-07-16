@@ -12,7 +12,7 @@ setup(
     long_description=README_TEXT,
     install_requires=["requests", "future", "bibtexparser"],
     include_package_data=True,
-    license="AGPLv3",
+    license="MIT",
     description="Generate a bibtex given a doi",
     author="Bruno Messias",
     author_email="messias.physics@gmail.com",
@@ -21,7 +21,7 @@ setup(
 
     classifiers=[
         "Development Status :: 4 - Beta",
-        "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+        "License :: OSI Approved :: MIT License",
         "Intended Audience :: Science/Research",
         "Programming Language :: Python",
         "Topic :: Text Processing :: Markup :: LaTeX",
