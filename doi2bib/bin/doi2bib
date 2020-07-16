@@ -42,6 +42,11 @@ def main():
         "--output", "-o",
         help="bibtex output file")
 
+    parser.add_argument(
+        "--abstract",
+        action='store_true',
+        help="try to import the abstract info")
+
     args = parser.parse_known_args()
     inlinedoi = len(args[1]) > 0
     if inlinedoi:
@@ -51,7 +56,7 @@ def main():
         dois = filter(lambda title: title != "", dois.split("\n"))
     bibs = []
     for doi in dois:
-        found, bib = get_bib_from_doi(doi)
+        found, bib = get_bib_from_doi(doi, add_abstract=args[0].abstract)
         if found:
             bibs.append(bib)
 

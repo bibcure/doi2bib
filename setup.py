@@ -7,9 +7,9 @@ readme.close()
 setup(
     name="doi2bib",
     version="0.3.0",
-    packages = find_packages(exclude=["build",]),
+    packages=find_packages(exclude=["build",]),
     scripts=["doi2bib/bin/doi2bib"],
-    long_description = README_TEXT,
+    long_description=README_TEXT,
     install_requires=["requests", "future", "bibtexparser"],
     include_package_data=True,
     license="AGPLv3",
@@ -17,7 +17,7 @@ setup(
     author="Bruno Messias",
     author_email="messias.physics@gmail.com",
     download_url="https://github.com/bibcure/doi2bib/archive/0.3.0.tar.gz",
-    keywords=["bibtex", "science","scientific-journals"],
+    keywords=["bibtex", "science", "scientific-journals"],
 
     classifiers=[
         "Development Status :: 4 - Beta",

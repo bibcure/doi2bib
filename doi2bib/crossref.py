@@ -1,6 +1,7 @@
 from __future__ import unicode_literals, print_function, absolute_import
 from builtins import str
 import requests
+import bibtexparser
 import re
 
 bare_url = "http://api.crossref.org/"
@@ -47,7 +48,7 @@ def get_json(doi):
     return found, item
 
 
-def get_bib_from_doi(doi, abbrev_journal=True):
+def get_bib_from_doi(doi, abbrev_journal=True, add_abstract=False):
     """
     Parameters
     ----------
@@ -66,6 +67,13 @@ def get_bib_from_doi(doi, abbrev_journal=True):
         found, item = get_json(doi)
         if found:
             abbreviated_journal = item["message"]["short-container-title"]
+            if add_abstract and "abstract" in item["message"].keys():
+                
+                abstract = item["message"]["abstract"]
+                bi = bibtexparser.loads(bib)
+                bi.entries[0]["abstract"] = abstract
+                bib = bibtexparser.dumps(bi)
+
             if len(abbreviated_journal) > 0:
                 abbreviated_journal = abbreviated_journal[0].strip()
                 bib = re.sub(
