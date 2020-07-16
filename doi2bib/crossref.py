@@ -23,7 +23,7 @@ def get_bib(doi):
     bib = r.content
     bib = str(bib, "utf-8")
 
-    return found, bib 
+    return found, bib
 
 
 def get_json(doi):
@@ -65,8 +65,9 @@ def get_bib_from_doi(doi, abbrev_journal=True):
 
         found, item = get_json(doi)
         if found:
-            abbreviated_journal = item["message"]["short-container-title"][0].strip()
-            if abbreviated_journal:
+            abbreviated_journal = item["message"]["short-container-title"]
+            if len(abbreviated_journal) > 0:
+                abbreviated_journal = abbreviated_journal[0].strip()
                 bib = re.sub(
                     r"journal = \{[^>]*?\}",
                     "journal = {" + abbreviated_journal + "}",
