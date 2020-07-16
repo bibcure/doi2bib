@@ -6,7 +6,7 @@ readme.close()
 
 setup(
     name="doi2bib",
-    version="0.3.0",
+    version="0.4.0",
     packages=find_packages(exclude=["build",]),
     scripts=["doi2bib/bin/doi2bib"],
     long_description=README_TEXT,

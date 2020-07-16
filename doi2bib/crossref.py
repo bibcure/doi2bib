@@ -68,7 +68,6 @@ def get_bib_from_doi(doi, abbrev_journal=True, add_abstract=False):
         if found:
             abbreviated_journal = item["message"]["short-container-title"]
             if add_abstract and "abstract" in item["message"].keys():
-                
                 abstract = item["message"]["abstract"]
                 bi = bibtexparser.loads(bib)
                 bi.entries[0]["abstract"] = abstract
