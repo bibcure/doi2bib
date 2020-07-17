@@ -1,3 +1,9 @@
+"""
+crossref integration
+===========================
+The core module
+"""
+
 from __future__ import unicode_literals, print_function, absolute_import
 from builtins import str
 import requests
@@ -11,9 +17,12 @@ def get_bib(doi):
     """
     Parameters
     ----------
+
         doi: str
+
     Returns
     -------
+
         found: bool
         bib: str
     """
@@ -32,8 +41,10 @@ def get_json(doi):
     Parameters
     ----------
         doi: str
+
     Returns
     -------
+
         found: bool
         item: dict
             Response from crossref
@@ -52,11 +63,13 @@ def get_bib_from_doi(doi, abbrev_journal=True, add_abstract=False):
     """
     Parameters
     ----------
+
         doi: str
         abbrev_journal: bool
             If True try to abbreviate the journal name
     Returns
     -------
+
         found: bool
         bib: str
             The bibtex string
