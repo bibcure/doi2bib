@@ -75,22 +75,21 @@ def get_bib_from_doi(doi, abbrev_journal=True, add_abstract=False):
             The bibtex string
     """
     found, bib = get_bib(doi)
-    if found and abbrev_journal:
-
+    if found and (abbrev_journal or add_abstract):
         found, item = get_json(doi)
         if found:
-            abbreviated_journal = item["message"]["short-container-title"]
-            if add_abstract and "abstract" in item["message"].keys():
-                abstract = item["message"]["abstract"]
-                bi = bibtexparser.loads(bib)
-                bi.entries[0]["abstract"] = abstract
-                bib = bibtexparser.dumps(bi)
+            content = item['message']
+            bib_parsed = bibtexparser.loads(bib)
+            entry = bib_parsed.entries[0]
 
-            if len(abbreviated_journal) > 0:
+            if add_abstract and "abstract" in content.keys():
+                entry["abstract"] = content["abstract"]
+
+            abbreviated_journal = content["short-container-title"]
+            if abbrev_journal and len(abbreviated_journal) > 0:
                 abbreviated_journal = abbreviated_journal[0].strip()
-                bib = re.sub(
-                    r"journal = \{[^>]*?\}",
-                    "journal = {" + abbreviated_journal + "}",
-                    bib)
+                entry["journal"] = abbreviated_journal
 
+        bib = bibtexparser.dumps(bib_parsed)
     return found, bib
+
