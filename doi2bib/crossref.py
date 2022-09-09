@@ -30,8 +30,7 @@ def get_bib(doi):
     url = url.format(bare_url, doi)
     r = requests.get(url)
     found = r.status_code == 200
-    bib = r.content
-    bib = str(bib, "utf-8")
+    bib = r.text
 
     return found, bib
 
