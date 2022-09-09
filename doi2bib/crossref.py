@@ -29,7 +29,7 @@ def get_bib(doi):
     url = "{}works/{}/transform/application/x-bibtex"
     url = url.format(bare_url, doi)
     r = requests.get(url)
-    found = False if r.status_code != 200 else True
+    found = r.status_code == 200
     bib = r.content
     bib = str(bib, "utf-8")
 
@@ -53,7 +53,7 @@ def get_json(doi):
     url = "{}works/{}"
     url = url.format(bare_url, doi)
     r = requests.get(url)
-    found = False if r.status_code != 200 else True
+    found = r.status_code == 200
     item = r.json()
 
     return found, item
@@ -80,7 +80,7 @@ def get_bib_from_doi(doi, abbrev_journal=True, add_abstract=False):
         found, item = get_json(doi)
         if found:
             abbreviated_journal = item["message"]["short-container-title"]
-            if add_abstract and "abstract" in item["message"].keys():
+            if add_abstract and "abstract" in item["message"]:
                 abstract = item["message"]["abstract"]
                 bi = bibtexparser.loads(bib)
                 bi.entries[0]["abstract"] = abstract
