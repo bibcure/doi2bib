@@ -67,6 +67,8 @@ def get_bib_from_doi(doi, abbrev_journal=True, add_abstract=False):
         doi: str
         abbrev_journal: bool
             If True try to abbreviate the journal name
+        add_abstract: bool
+            If True try to add abstract to bibtex
     Returns
     -------
 
@@ -75,22 +77,22 @@ def get_bib_from_doi(doi, abbrev_journal=True, add_abstract=False):
             The bibtex string
     """
     found, bib = get_bib(doi)
-    if found and abbrev_journal:
-
+    if found:
         found, item = get_json(doi)
         if found:
-            abbreviated_journal = item["message"]["short-container-title"]
-            if add_abstract and "abstract" in item["message"].keys():
-                abstract = item["message"]["abstract"]
-                bi = bibtexparser.loads(bib)
-                bi.entries[0]["abstract"] = abstract
-                bib = bibtexparser.dumps(bi)
-
-            if len(abbreviated_journal) > 0:
-                abbreviated_journal = abbreviated_journal[0].strip()
-                bib = re.sub(
-                    r"journal = \{[^>]*?\}",
-                    "journal = {" + abbreviated_journal + "}",
-                    bib)
-
+            message = item.get("message")
+            if message:
+                abstract = message.get("abstract")
+                abbreviated_journal = message.get("short-container-title")
+                if add_abstract and abstract:
+                    bi = bibtexparser.loads(bib)
+                    bi.entries[0]["abstract"] = abstract
+                    bib = bibtexparser.dumps(bi)
+                if abbrev_journal and abbreviated_journal:
+                    abbreviated_journal = abbreviated_journal[0].strip()
+                    bib = re.sub(
+                        r"journal = \{[^>]*?\}",
+                        "journal = {" + abbreviated_journal + "}",
+                        bib
+                    )
     return found, bib
